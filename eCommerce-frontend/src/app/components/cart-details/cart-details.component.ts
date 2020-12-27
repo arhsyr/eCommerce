@@ -20,6 +20,7 @@ export class CartDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.showDetails();
   }
+
   showDetails(){
     this.carts = this._cartService.carts;
     this._cartService.totalPrice.subscribe(data => {
@@ -29,6 +30,18 @@ export class CartDetailsComponent implements OnInit {
       this.totalQuantity= data;
     })
     this._cartService.calculateTotalPrice();
+  }
+
+  increment(cart: Cart){
+    this._cartService.addCart(cart);
+  }
+
+  decrement(cart: Cart) {
+    this._cartService.decrement(cart);
+  }
+
+  remove(cart: Cart){
+    this._cartService.removeCart(cart);
   }
 
 }

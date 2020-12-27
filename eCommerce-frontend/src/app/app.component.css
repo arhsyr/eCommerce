@@ -1,6 +1,6 @@
 #footer {
     background: rgb(37, 35, 35) !important;
-    position: relative;
+    position: fixed;
     width: 100%;
     bottom: 0%;
 }

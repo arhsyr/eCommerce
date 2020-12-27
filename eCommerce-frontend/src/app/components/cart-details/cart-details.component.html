@@ -5,42 +5,66 @@
     <div class="col-md-9">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead class="bg-dark text-light">
-                        <tr>
-                            <th width="20%"></th>
-                            <th width="50%"></th>
-                            <th width="30%"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let cart of carts">
-                            <td>
-                                <img [src]="cart.imgageUrl" height="200" class="img-responsive">
-                            </td>
-                            <td>
-                                <p>{{ cart.name }}</p>
-                                <p>{{ cart.price | currency:'EUR' }}</p>
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <p>Quantity: {{ cart.quantity }} </p>
+                <div *ngIf="carts.length > 0">
+                    <table class="table table-bordered">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th width="20%"></th>
+                                <th width="50%"></th>
+                                <th width="30%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cart of carts">
+                                <td>
+                                    <img [src]="cart.imgageUrl" height="200" class="img-responsive">
+                                </td>
+                                <td>
+                                    <p>{{ cart.name }}</p>
+                                    <p>{{ cart.price | currency:'EUR' }}</p>
+                                </td>
+                                <td>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <p>Quantity: 
+                                                 <span (click)="remove(cart)" 
+                                                 class="float-right pointer text-danger">
+                                                     <i class="fas fa-trash-alt"></i>
+                                                 </span>
+                                            </p>
+                                        </div>
+                                        <div (click)="decrement(cart)" class="col-md-4">
+                                            <button class="btn-primary btn-sm float-left">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-md-4 text-center">
+                                            {{ cart.quantity }}
+                                        </div>
+                                        <div class="col-md-4">
+                                            <button (click)="increment(cart)" class="btn-primary btn-sm float-right">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="col-md-12 mt-2">
+                                            <p>Subtotal: {{ cart.price * cart.quantity | currency:'EUR' }}</p>
+                                        </div>
                                     </div>
-                                    <div class="col-md-12 mt-2">
-                                        <p>Subtotal: {{ cart.price * cart.quantity | currency:'EUR' }}</p>
-                                    </div>
-                                </div>
+                                </td>
+                            </tr>
+                            <td colspan="2"></td>
+                            <td>
+                                <p>Total Quantity: {{ totalQuantity }}</p>
+                                <p>Shipping Free</p>
+                                <p>Total Price: {{ totalPrice }} </p>
                             </td>
-                        </tr>
-                        <td colspan="2"></td>
-                        <td>
-                            <p>Total Quantity: {{ totalQuantity }}</p>
-                            <p>Shipping Free</p>
-                            <p>Total Price: {{ totalPrice }} </p>
-                        </td>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+                <div *ngIf="carts.length == 0" class="alert alert-warning" role="alert">
+                    Empty!
+                </div>
             </div>
         </div>
     </div>

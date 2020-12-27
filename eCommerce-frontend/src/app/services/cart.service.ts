@@ -43,4 +43,20 @@ export class CartService {
     this.totalQuantity.next(totalQuantityValue);
   }
 
+  decrement(cart: Cart) {
+    cart.quantity--;
+    if (cart.quantity == 0) {
+      this.removeCart(cart);
+    } else {
+      this.calculateTotalPrice();
+    }
+  }
+
+  removeCart(cart: Cart) {
+    const index = this.carts.findIndex((element) =>  element.id === cart.id)
+    if (index > -1) {
+      this.carts.splice(index, 1);
+      this.calculateTotalPrice();
+    }
+  }
 }
