@@ -13,7 +13,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String categoryName;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private Set<Item> items;

@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col-md-3">
+        <app-category></app-category>
+    </div>
+    <div class="col-md-9">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead class="bg-dark text-light">
+                        <tr>
+                            <th width="20%"></th>
+                            <th width="50%"></th>
+                            <th width="30%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cart of carts">
+                            <td>
+                                <img [src]="cart.imgageUrl" height="200" class="img-responsive">
+                            </td>
+                            <td>
+                                <p>{{ cart.name }}</p>
+                                <p>{{ cart.price | currency:'EUR' }}</p>
+                            </td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>Quantity: {{ cart.quantity }} </p>
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <p>Subtotal: {{ cart.price * cart.quantity | currency:'EUR' }}</p>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <td colspan="2"></td>
+                        <td>
+                            <p>Total Quantity: {{ totalQuantity }}</p>
+                            <p>Shipping Free</p>
+                            <p>Total Price: {{ totalPrice }} </p>
+                        </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

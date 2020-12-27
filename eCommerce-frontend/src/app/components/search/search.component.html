@@ -1,0 +1,7 @@
+<form class="form-inline ml-2">
+    <div class="md-form mr-2">
+        <input type="text" #searchInput 
+        (keyup.enter)="search(searchInput.value)" class="form-control" placeholder="Search">
+    </div>
+        <button class="submit" (click)="search(searchInput.value)" class="btn btn-primary">Search</button>
+</form>

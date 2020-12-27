@@ -1,5 +1,6 @@
 export class Item {
 
+    id: string;
     sku: string;
     name: string;
     description: string;

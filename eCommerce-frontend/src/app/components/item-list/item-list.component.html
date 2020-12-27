@@ -1,20 +1,38 @@
-<table border="1">
-    <thead>
-        <tr>
-            <th> </th>
-            <th> Name </th>
-            <th> Description </th>
-            <th> Price </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let item of items">
-            <td> 
-                <img [src]="item.imageUrl" height="50" > 
-            </td>
-            <td>{{ item.name}}</td>
-            <td>{{ item.description}}</td>
-            <td>{{ item.price | currency: 'EUR'}}</td>
-        </tr> 
-    </tbody>
-</table>
+<ngx-spinner type="ball-spin-clockwise" size="default" bdColor="rgba(51, 51, 51, 0.8)"></ngx-spinner>
+<p style="color: white;">Please wait..</p>
+<div class="row">
+    <div class="col-lg-2">
+        <app-category></app-category>
+    </div>
+    <div *ngIf="items?.length >0" class="col-lg-10">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 mb-4" *ngFor="let item of items">
+                <div class="card h-100">
+                    <a routerLink="/items/{{ item.id }}"><img class="card-img-top" [src]="item.imageUrl"></a>
+                    <div class="card-body">
+                        <h4 class="card-title"> 
+                            <a text-info routerLink="/items/{{ item.id }}">{{ item.name }}</a> </h4>
+                        <h5>{{ item.price | currency: 'EUR' }}</h5>
+                            <p class="card-text text-truncate">{{item.description}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-primary float-right" (click)="addCart(item)"> Add </button>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="items?.length==0 && !items" class="col-md-12 alert alert-warning mt-3">
+                Item Not Found!
+            </div>
+        </div>
+        <ngb-pagination class="d-flex justify-content-end"
+            [(page)]="currentPage"
+            [pageSize]="pageSize"
+            [collectionSize]="totalRecords"
+            (pageChange)="checkSearch()">
+            <ng-template ngbPaginationPrevious>Prev</ng-template>
+            <ng-template ngbPaginationNext>Next</ng-template>
+            <ng-template ngbPaginationFirst>First</ng-template>
+            <ng-template ngbPaginationLast>Last</ng-template>
+        </ngb-pagination>
+    </div>
+</div>

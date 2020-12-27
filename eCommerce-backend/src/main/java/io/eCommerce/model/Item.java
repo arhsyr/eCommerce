@@ -15,7 +15,7 @@ public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String sku;
     private String name;
     private String description;
@@ -25,9 +25,7 @@ public class Item {
     private int unitInStock;
     private Date createdOn;
     private Date updateOn;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "category_Id", nullable = false)
     private Category category;
-
 }
