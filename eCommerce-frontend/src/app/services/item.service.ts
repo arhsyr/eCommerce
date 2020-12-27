@@ -21,6 +21,11 @@ export class ItemService {
     return this.httpClient.get<getRespose>(searchUrl);
   }
 
+  showItems(currentPage: number, pageSize: number){
+    const theUrl = `${this.baseUrl}?page=${currentPage}&size=${pageSize}`
+    this.getAllItems(theUrl);
+  }
+
   getItem(id: number): Observable<Item>{
     const itemUrl = `${this.baseUrl}/${id}`;
     return this.httpClient.get<Item>(itemUrl);

@@ -45,23 +45,29 @@ export class ItemListComponent implements OnInit {
 
   checkSearch(){
     this._spinnerService.show();
+
     this.checkKeyword = this._activatedRoute.snapshot.paramMap.has('keyword');
     if (this.checkKeyword) {
       this.getSearch();
     } else {
-      this.getItems();
+      this.getCategoryId();
     }
   }
 
-  getItems() {
+  getCategoryId() {
     const hasId: boolean = this._activatedRoute.snapshot.paramMap.has('id');
     if (hasId) {
-      this.currentCategoryId = +this._activatedRoute.snapshot.paramMap.get('id')
+      this.currentCategoryId = +this._activatedRoute.snapshot.paramMap.get('id');
+      this.getItems();
 
     } else {
-      this.currentCategoryId = 1
+      this.currentCategoryId = 1;
+      this.getItems();
     }
 
+  }
+
+  getItems() {
     if (this.previousCategoryId != this.currentCategoryId){
       this.currentPage = 1;
     }
@@ -71,6 +77,10 @@ export class ItemListComponent implements OnInit {
     this._itemService
     .getItems(this.currentCategoryId, this.currentPage - 1, this.pageSize)
     .subscribe(this.paginate())
+  }
+
+  showItems() {
+    this._itemService.showItems(this.currentPage-1, this.pageSize)
   }
 
   getSearch(){

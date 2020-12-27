@@ -15,9 +15,13 @@ import { CartStatusComponent } from './components/cart-status/cart-status.compon
 import { MenuComponent } from './components/menu/menu.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 
 const routes: Routes = [
+  { path: 'about', component: AboutComponent},
+  { path: 'contact', component: ContactComponent},
   { path: 'cart-details', component: CartDetailsComponent},
   { path: 'items', component: ItemListComponent},
   { path: 'items/:id', component: DetailsComponent},
@@ -37,7 +41,9 @@ const routes: Routes = [
     DetailsComponent,
     CartStatusComponent,
     MenuComponent,
-    CartDetailsComponent
+    CartDetailsComponent,
+    AboutComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
