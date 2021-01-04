@@ -5,7 +5,10 @@
     <ul class="list-unstyled components">
         <li>
             <a routerLink="/category/{{ category.id }}" *ngFor="let category of categories"
+            routerLinkActive="bg-primary text-white font-weight-bold"
             >{{ category.categoryName }}</a>
         </li>
     </ul>
 </nav>
+
+
